@@ -1,0 +1,20 @@
+//vytvorenie Image s názvom vk-apache na základe Dockerfile s názvom Dockerfile-apache pričom
+//základný kontext pre build je priečinok v ktorom sa nachádzam čo reprezentuje tá podka na konci
+docker build -t vk-apache -f Dockerfile-apache .
+
+//vytvorenie kontaneru s image vk-apache, namapovanie portov tak, že vnútorný port kontajenera 80
+//sa presmeruje na vonkajsi port hostitela 8080, -d znamena, ze vystup s konzoli kontanera sa nebude zobrazovat
+//v nasej konzole, cize nastane tzv. "detach"
+docker run -d -p 8080:80 vk-apache
+
+//zastavenie kontajnera s nazvom trusting_shamir
+docker stop trusting_shamir
+
+//vymazanie kontajnera s názvom trusting_shamir
+docker rm trusting_shamir
+
+//zobrazenie vsetkych beziacich kontajnerov
+docker ps
+
+//zobrzenie všetkých lokálnych images na disku
+docker images
