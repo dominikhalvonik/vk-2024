@@ -18,3 +18,11 @@ docker ps
 
 //zobrzenie všetkých lokálnych images na disku
 docker images
+
+docker compose build
+
+docker compose up -d
+
+docker compose stop
+
+docker compose down
