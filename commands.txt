@@ -19,10 +19,14 @@ docker ps
 //zobrzenie všetkých lokálnych images na disku
 docker images
 
+//spustenie docker build commandu nad všetkými servismi definovanými v docker-compose.yaml súbore
 docker compose build
 
+//spustenie docker run -d commandu nad všetkými servismi definovanými v docker-compose.yaml súbore
 docker compose up -d
 
+//spustenie docker stop commandu nad všetkými servismi definovanými v docker-compose.yaml súbore
 docker compose stop
 
+//spustenie docker rm commandu nad všetkými servismi definovanými v docker-compose.yaml súbore
 docker compose down
