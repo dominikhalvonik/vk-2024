@@ -21,7 +21,10 @@ services:
       - vk-dbdata:/var/lib/mysql
 
   vk-web:
-    image: library/nginx:1.20.1
+    build:
+      context: .
+      dockerfile: config/docker/nginx.Dockerfile
+    image: matejchlustik/vk-web
     container_name: VkWeb
     ports:
       - "8086:80"
