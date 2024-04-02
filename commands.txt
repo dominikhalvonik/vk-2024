@@ -33,3 +33,36 @@ docker compose down
 
 //spustenie docker run -d commandu nad všetkými servismi definovanými v docker-compose-nginx.yaml súbore
 docker compose -f docker-compose-nginx.yaml up -d
+
+//spustenie docker build commandu nad všetkými servismi definovanými v docker-compose-nginx.yaml súbore
+docker compose -f docker-compose-nginx.yaml build
+
+//získať zoznam namespaces v našom clustry
+kubectl get namespaces
+
+//vytvoriť namespace ukf v našom clustry
+kubectl create namespace ukf
+
+//nahrať a spustiť všetko čo je v súbore deployment.yaml do nášho clustra - univerzálne pre akýkoľvek typ súboru
+kubectl apply -f deployment.yaml
+
+//získať zoznam deploymentov v namespace ukf
+kubectl -n ukf get deployments
+
+//získať zoznam servisov v namespace ukf
+kubectl -n ukf get svc
+
+//získať zoznam configmap v namespace ukf
+kubectl -n ukf get configmap
+
+//získať zoznam vytvorených podov v namespace ukf
+kubectl -n ukf get pods
+
+//vymazať všetky pody v namespace ukf
+kubectl -n ukf delete pods --all
+
+//live editácia súboru typu configmap s názvom nginx-config v namespace ukf
+kubectl edit configmap nginx-config  -o yaml -n ukf
+
+//ssh do podu s názvom nginx-d64b868c9-mvt6h v namespace ukf, konkrétne do kontajnera s názvom nginx - použitý termínal je bash, alternatíva môže byť shell
+kubectl exec -it nginx-d64b868c9-mvt6h -n ukf -c nginx -- bash

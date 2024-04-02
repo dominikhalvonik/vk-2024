@@ -37,7 +37,7 @@ services:
     build:
       context: .
       dockerfile: config/docker/Dockerfile
-    image: vk-php
+    image: ppsdocker/vk-php
     container_name: VkPhp
     expose:
       - 9000
