@@ -23,8 +23,16 @@ spec:
           configMap:
             name: nginx-config
             defaultMode: 420
-        - name: www-data-share
-          emptyDir: {}
+        - name: www-data-volume
+          persistentVolumeClaim:
+            claimName: www-data-pvc
+      initContainers:
+        - name: init-vk-php
+          image: ppsdocker/vk-php:latest
+          command: ['sh', '-c', 'cp -r /var/www/html/* /mnt/']
+          volumeMounts:
+            - name: www-data-volume
+              mountPath: /mnt
       terminationGracePeriodSeconds: 60
       containers:
         - name: vk-php
@@ -46,7 +54,7 @@ spec:
               memory: 300Mi
               cpu: "0.25"
           volumeMounts:
-            - name: www-data-share
+            - name: www-data-volume
               mountPath: /var/www/html
         - name: nginx
           image: library/nginx:1.20.1
@@ -77,5 +85,5 @@ spec:
             - name: nginx-config-volume
               mountPath: /etc/nginx/conf.d/default.conf
               subPath: default.conf
-            - name: www-data-share
+            - name: www-data-volume
               mountPath: /var/www/html
