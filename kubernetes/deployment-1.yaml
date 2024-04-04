@@ -25,6 +25,13 @@ spec:
             defaultMode: 420
         - name: www-data-share
           emptyDir: {}
+      initContainers:
+        - name: init-vk-php
+          image: ppsdocker/vk-php:latest
+          command: ['sh', '-c', 'cp -r /var/www/html/* /www-data-share/ && chmod -R 777 /www-data-share/uploads']
+          volumeMounts:
+            - name: www-data-share
+              mountPath: /www-data-share
       terminationGracePeriodSeconds: 60
       containers:
         - name: vk-php
