@@ -29,7 +29,7 @@ services:
       MYSQL_USER: pouzivatel
       MYSQL_PASSWORD: heslo
     ports:
-      - "3306:3306"
+      - "3307:3307"
     networks:
       - vk
     volumes:

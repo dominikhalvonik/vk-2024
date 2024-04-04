@@ -1,0 +1,11 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: src-pvc
+  namespace: ukf
+spec:
+  accessModes:
+    - ReadWriteMany  # Toto umožní zdieľanie zväzku medzi kontajnermi
+  resources:
+    requests:
+      storage: 1Gi  # Nastavte požadovanú veľkosť úložiska
