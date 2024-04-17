@@ -14,7 +14,7 @@ RUN docker-php-ext-install gd pdo pdo_mysql opcache
 RUN pecl install redis && \
     docker-php-ext-enable redis
 
-WORKDIR /var/www/html
+WORKDIR /var/www/app
 COPY ./src ./
 
 RUN chmod -R 777 uploads
@@ -23,4 +23,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 EXPOSE 9000
 
-CMD chmod -R 777 /var/www/html/uploads && php-fpm
+CMD chmod -R 777 /var/www/app/uploads && php-fpm
