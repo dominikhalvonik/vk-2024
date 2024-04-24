@@ -66,3 +66,9 @@ kubectl edit configmap nginx-config  -o yaml -n ukf
 
 //ssh do podu s názvom nginx-d64b868c9-mvt6h v namespace ukf, konkrétne do kontajnera s názvom nginx - použitý termínal je bash, alternatíva môže byť shell
 kubectl exec -it nginx-d64b868c9-mvt6h -n ukf -c nginx -- bash
+
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
+
+kubectl -n ukf get pv
+
+kubectl -n ukf get pvc

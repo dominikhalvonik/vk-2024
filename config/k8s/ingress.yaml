@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ukf-test
+  namespace: ukf
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: 1024m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '120'
+spec:
+  tls:
+    - hosts:
+        - moja-testovacia-ukf-domena.sk
+      secretName: ssl-certifikat-pre-domenu
+  rules:
+    - host: moja-testovacia-ukf-domena.sk
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
+
